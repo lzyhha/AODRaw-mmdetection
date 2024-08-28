@@ -23,6 +23,7 @@ from .transforms import (Albu, CachedMixUp, CachedMosaic, CopyPaste, CutOut,
                          RandomFlip, RandomShift, Resize, ResizeShortestEdge,
                          SegRescale, YOLOXHSVRandomAug)
 from .wrappers import MultiBranch, ProposalBroadcaster, RandomOrder
+from .raw_transformers import LoadImageFromRAW, LoadImageFromRAWDemosaicing
 
 __all__ = [
     'PackDetInputs', 'ToTensor', 'ImageToTensor', 'Transpose',
@@ -41,5 +42,6 @@ __all__ = [
     'LoadTrackAnnotations', 'BaseFrameSample', 'UniformRefFrameSample',
     'PackTrackInputs', 'PackReIDInputs', 'FixScaleResize',
     'ResizeShortestEdge', 'GTBoxSubOne_GLIP', 'RandomFlip_GLIP',
-    'RandomSamplingNegPos', 'LoadTextAnnotations'
+    'RandomSamplingNegPos', 'LoadTextAnnotations', 'LoadImageFromBayer', 
+    'LoadImageFromRAW', 'LoadImageFromRAWDemosaicing', 
 ]

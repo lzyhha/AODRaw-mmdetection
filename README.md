@@ -1,455 +1,169 @@
-<div align="center">
-  <img src="resources/mmdet-logo.png" width="600"/>
-  <div>&nbsp;</div>
-  <div align="center">
-    <b><font size="5">OpenMMLab website</font></b>
-    <sup>
-      <a href="https://openmmlab.com">
-        <i><font size="4">HOT</font></i>
-      </a>
-    </sup>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <b><font size="5">OpenMMLab platform</font></b>
-    <sup>
-      <a href="https://platform.openmmlab.com">
-        <i><font size="4">TRY IT OUT</font></i>
-      </a>
-    </sup>
-  </div>
-  <div>&nbsp;</div>
+# Towards RAW Object Detection in Diverse Conditions
 
-[![PyPI](https://img.shields.io/pypi/v/mmdet)](https://pypi.org/project/mmdet)
-[![docs](https://img.shields.io/badge/docs-latest-blue)](https://mmdetection.readthedocs.io/en/latest/)
-[![badge](https://github.com/open-mmlab/mmdetection/workflows/build/badge.svg)](https://github.com/open-mmlab/mmdetection/actions)
-[![codecov](https://codecov.io/gh/open-mmlab/mmdetection/branch/main/graph/badge.svg)](https://codecov.io/gh/open-mmlab/mmdetection)
-[![license](https://img.shields.io/github/license/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/blob/main/LICENSE)
-[![open issues](https://isitmaintained.com/badge/open/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/issues)
-[![issue resolution](https://isitmaintained.com/badge/resolution/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/issues)
-[![Open in OpenXLab](https://cdn-static.openxlab.org.cn/app-center/openxlab_demo.svg)](https://openxlab.org.cn/apps?search=mmdet)
+[Paper link](https://arxiv.org/abs/2411.15678)
 
-[📘Documentation](https://mmdetection.readthedocs.io/en/latest/) |
-[🛠️Installation](https://mmdetection.readthedocs.io/en/latest/get_started.html) |
-[👀Model Zoo](https://mmdetection.readthedocs.io/en/latest/model_zoo.html) |
-[🆕Update News](https://mmdetection.readthedocs.io/en/latest/notes/changelog.html) |
-[🚀Ongoing Projects](https://github.com/open-mmlab/mmdetection/projects) |
-[🤔Reporting Issues](https://github.com/open-mmlab/mmdetection/issues/new/choose)
+[Dataset link](https://github.com/lzyhha/AODRaw)
 
-</div>
-
-<div align="center">
-
-English | [简体中文](README_zh-CN.md)
-
-</div>
-
-<div align="center">
-  <a href="https://openmmlab.medium.com/" style="text-decoration:none;">
-    <img src="https://user-images.githubusercontent.com/25839884/219255827-67c1a27f-f8c5-46a9-811d-5e57448c61d1.png" width="3%" alt="" /></a>
-  <img src="https://user-images.githubusercontent.com/25839884/218346358-56cc8e2f-a2b8-487f-9088-32480cceabcf.png" width="3%" alt="" />
-  <a href="https://discord.com/channels/1037617289144569886/1046608014234370059" style="text-decoration:none;">
-    <img src="https://user-images.githubusercontent.com/25839884/218347213-c080267f-cbb6-443e-8532-8e1ed9a58ea9.png" width="3%" alt="" /></a>
-  <img src="https://user-images.githubusercontent.com/25839884/218346358-56cc8e2f-a2b8-487f-9088-32480cceabcf.png" width="3%" alt="" />
-  <a href="https://twitter.com/OpenMMLab" style="text-decoration:none;">
-    <img src="https://user-images.githubusercontent.com/25839884/218346637-d30c8a0f-3eba-4699-8131-512fb06d46db.png" width="3%" alt="" /></a>
-  <img src="https://user-images.githubusercontent.com/25839884/218346358-56cc8e2f-a2b8-487f-9088-32480cceabcf.png" width="3%" alt="" />
-  <a href="https://www.youtube.com/openmmlab" style="text-decoration:none;">
-    <img src="https://user-images.githubusercontent.com/25839884/218346691-ceb2116a-465a-40af-8424-9f30d2348ca9.png" width="3%" alt="" /></a>
-  <img src="https://user-images.githubusercontent.com/25839884/218346358-56cc8e2f-a2b8-487f-9088-32480cceabcf.png" width="3%" alt="" />
-  <a href="https://space.bilibili.com/1293512903" style="text-decoration:none;">
-    <img src="https://user-images.githubusercontent.com/25839884/219026751-d7d14cce-a7c9-4e82-9942-8375fca65b99.png" width="3%" alt="" /></a>
-  <img src="https://user-images.githubusercontent.com/25839884/218346358-56cc8e2f-a2b8-487f-9088-32480cceabcf.png" width="3%" alt="" />
-  <a href="https://www.zhihu.com/people/openmmlab" style="text-decoration:none;">
-    <img src="https://user-images.githubusercontent.com/25839884/219026120-ba71e48b-6e94-4bd4-b4e9-b7d175b5e362.png" width="3%" alt="" /></a>
-</div>
-
-<div align="center">
-<img src="https://github.com/open-mmlab/mmdetection/assets/17425982/6c29886f-ae7a-4a55-8be4-352ee85b7d3e"/>
-</div>
+## Table of Contents
+- [Introduction](#introduction)
+- [Install](#install)
+- [ModelZoo](#modelzoo)
+   - [Models using down-sampled AODRaw](#models-using-down-sampled-aodraw)
+   - [Models using sliced AODRaw](#models-using-sliced-aodraw)
+- [Training and Evaluation](#training-and-evaluation)
+   - [Configs and pre-trained weights](#configs-and-pre-trained-weights)
+   - [Training](#training)
+   - [Evaluation](#evaluation)
+- [Citation](#citation)
+- [License](#license)
+- [Acknowledgement](#acknowledgement)
 
 ## Introduction
 
-MMDetection is an open source object detection toolbox based on PyTorch. It is
-a part of the [OpenMMLab](https://openmmlab.com/) project.
+Existing object detection methods often consider sRGB input, which was compressed from RAW data using ISP originally designed for visualization. However, such compression might lose crucial information for detection, especially under complex light and weather conditions. **We introduce the AODRaw dataset, which offers 7,785 high-resolution real RAW images with 135,601 annotated instances spanning 62 categories, capturing a broad range of indoor and outdoor scenes under 9 distinct light and weather conditions.** Based on AODRaw that supports RAW and sRGB object detection, we provide a comprehensive benchmark for evaluating current detection methods. We find that sRGB pre-training constrains the potential of RAW object detection due to the domain gap between sRGB and RAW, prompting us to directly pre-train on the RAW domain. However, it is harder for RAW pre-training to learn rich representations than sRGB pre-training due to the camera noise. To assist RAW pre-training, we distill the knowledge from an off-the-shelf model pre-trained on the sRGB domain. As a result, we achieve substantial improvements under diverse and adverse conditions without relying on extra pre-processing modules. 
 
-The main branch works with **PyTorch 1.8+**.
+## Dataset
 
-<img src="https://user-images.githubusercontent.com/12907710/187674113-2074d658-f2fb-42d1-ac15-9c4a695e64d7.png"/>
+Please refer to [AODRaw]() to download and preprocess our AODRaw dataset.
 
-<details open>
-<summary>Major features</summary>
+## Install
 
-- **Modular Design**
+Please refer to the [README of mmdetection](README_MMDET.md).
 
-  We decompose the detection framework into different components and one can easily construct a customized object detection framework by combining different modules.
+## ModelZoo
 
-- **Support of multiple tasks out of box**
+#### Models using down-sampled AODRaw
 
-  The toolbox directly supports multiple detection tasks such as **object detection**, **instance segmentation**, **panoptic segmentation**, and **semi-supervised object detection**.
+Please follow [downsampling](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#down-sampling-precrossing) to preprocess the images or download preprocessed images in [download](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading).
 
-- **High efficiency**
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|Faster RCNN | ResNet-50 | sRGB | sRGB | 23.3 | [Config](configs/aodraw/faster-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1dUHyWXNLdg4WW165tvbsDp5D7G0OjD0Q/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1XPipT0uMl8mqxUjjG5EoWA?pwd=w251) | - |
+|Retinanet | ResNet-50 | sRGB | sRGB | 19.1 | [Config](configs/aodraw/retinanet_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1CFTCP1VVgx3pfA-ITE2S2kJ6C3H6pqdW/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/19JoTMeaTKOcJOcKzVnRQWg?pwd=qvxf) | - |
+|GFocal | ResNet-50 | sRGB | sRGB | 24.2 | [Config](configs/aodraw/gfl_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1HRCvJJyQUpWo9-XQaG93BQ4HReQUaPYI/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1iMHk3eM5gSJqUSG7zDNm3g?pwd=se68) | - |
+|Sparse RCNN | ResNet-50 | sRGB | sRGB | 15.6 | [Config](configs/aodraw/sparse-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/11TKxMNblfzHQKWvQ_e2UDxzX1ZSkhEbw/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1HBAbtZghftRDytq_VuNqvQ?pwd=wy8j) | - |
+|Deformable DETR | ResNet-50 | sRGB | sRGB | 16.6 | [confog](configs/aodraw/deformable-detr_r50_16xb2-100e_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1ToaCFi0rXe5RdwTkh9OIh9RxlIxtyydC/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/154F3nnSGFEujZBOHGGPsMQ?pwd=vbct) | - |
+|Cascade RCNN| ResNet-50 | sRGB | sRGB | 25.6 | [Config](configs/aodraw/cascade-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1x9ggEXeeTMcHrt42ycWzn7oJvgO4CHj3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/166HVewRzxweHidfilEqSwA?pwd=7hgm) |  - |
+|Faster RCNN | Swin-T | sRGB |sRGB | 28.4 | [Config](configs/aodraw/faster-rcnn_swin-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/14uryTqn4PfSMHll-3jVoY3dfv6BMeBpV/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1OIMEOzdEoO4zQWKfnEIWeg?pwd=dzah) | - |
+|Faster RCNN | ConvNeXt-T | sRGB | sRGB | 29.7 | [Config](configs/aodraw/faster-rcnn_convnext-t-p4-w7_fpn_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1OjNIZ42mlPaMwy10BA4NVnCs9jqPWYTc/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1EKc9gdKqrrWHhCI2qgj9bw?pwd=ibvy) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+|GFocal | Swin-T | sRGB | sRGB | 30.1 | [Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1jPVq-gkNRkFAqM1HKLWmHBxi5i7hq8l0/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/16rdWnleYcxR6pnm2k3f7Yw?pwd=vhe7) | - |
+|GFocal | ConvNeXt-T | sRGB | sRGB | 32.1 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1YMasTjI53OSWToD1btC2o25XYt36uiur/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1tatP2KyudFerkB3_WHyqDQ?pwd=zpws) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+|Cascade RCNN | Swin-T | sRGB | sRGB | 32.0 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1yZ93gIuogxUU8eRenJ5eEFykrdYyPAW7/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1JeoZfTMLWh1JRX4CcUlWmg?pwd=sbpk) |  - |
+|Cascade RCNN | ConvNeXt-T | sRGB | sRGB | 34.0 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1hf9G3LYrGWd_37CIJzZZr_TBjbuFfGyH/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1OqJ9h4Fot8QJbQiD2gc4Ng?pwd=2kud) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
 
-  All basic bbox and mask operations run on GPUs. The training speed is faster than or comparable to other codebases, including [Detectron2](https://github.com/facebookresearch/detectron2), [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) and [SimpleDet](https://github.com/TuSimple/simpledet).
+The directory [images_downsampled_srgb](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
 
-- **State of the art**
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|GFocal | Swin-T | sRGB | RAW | 29.9 |[Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/1x_uX3wfI1s2qU7ILe9TOy1ikcCyfI8lf/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1Rw7ebbJm93WdQTuz5gOeCQ?pwd=3xcd) | - |
+|GFocal | ConvNeXt-T | sRGB | RAW | 31.5 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/159ENxlvyP-3mJ8sDDQ5l-b3vOSsvG-XR/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1iqHJe4RPKmjwDM2rzc_CVg?pwd=xgv9) |[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+|Cascade RCNN | Swin-T | sRGB | RAW | 31.7 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/1C8XEdLOw8b-K7cscTj9964DKplNK1udQ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1_UGoMxofGI-cIMSS4JnzqQ?pwd=yf1u) | - |
+|Cascade RCNN | ConvNeXt-T | sRGB | RAW | 33.7 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/15K0wNjlMK1QkQPXblXp-Pced4dLIynYV/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1lIGgUz_AWwPBu3b-luHjdg?pwd=er6c)|[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
 
-  The toolbox stems from the codebase developed by the *MMDet* team, who won [COCO Detection Challenge](http://cocodataset.org/#detection-leaderboard) in 2018, and we keep pushing it forward.
-  The newly released [RTMDet](configs/rtmdet) also obtains new state-of-the-art results on real-time instance segmentation and rotated object detection tasks and the best parameter-accuracy trade-off on object detection.
+The directory [images_downsampled_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
 
-</details>
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|GFocal | Swin-T | RAW | RAW | 30.7 | [Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/18e8cnEsQOEjdp1N99Sqnn_ZHofs0fjcY/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1AolwF5_1uZ1Xhw8E5ibKSA?pwd=s3vi) | [Google](https://drive.google.com/file/d/12hdeZMp6cn4dKIidL07ndY1xw59qAnbO/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1mCrunp0rrFUAlMrxiui9mQ?pwd=nm1r)  |
+|GFocal | ConvNeXt-T | RAW | RAW | 32.1 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1cRtbbsSpokYcp_dte-YQDeeIB_n2A40F/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1eaqVwbTLnsIMFYMCXUHRdg?pwd=r7xu) | [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) | 
+|Cascade RCNN | Swin-T | RAW | RAW | 32.2 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1BxuYMtKhWphoaGcH-UC7BzQYc45ZiW73/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1EpTn7eQQB-6v4be-B17vHg?pwd=7kfs) | [Google](https://drive.google.com/file/d/12hdeZMp6cn4dKIidL07ndY1xw59qAnbO/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1mCrunp0rrFUAlMrxiui9mQ?pwd=nm1r)  | 
+|Cascade RCNN | ConvNeXt-T | RAW | RAW | 34.8 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1nfwyfLK3nQ6cjGXkuHdFKRlEx1WJUgN_/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1FOda_Ipw17kHxWTLoqMXHA?pwd=kh1b) |  [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) |
 
-Apart from MMDetection, we also released [MMEngine](https://github.com/open-mmlab/mmengine) for model training and [MMCV](https://github.com/open-mmlab/mmcv) for computer vision research, which are heavily depended on by this toolbox.
+The directory [images_downsampled_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
 
-## What's New
+#### Models using sliced AODRaw
+Please follow [slicing](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#slicing-precrossing) to preprocess the images or download preprocessed images in [download](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading).
 
-💎 **We have released the pre-trained weights for MM-Grounding-DINO Swin-B and Swin-L, welcome to try and give feedback.**
 
-### Highlight
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|Cascade RCNN | Swin-T | sRGB | RAW | 29.2 | [Config](configs/aodraw_slice/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice.py) | [Google](https://drive.google.com/file/d/1jNbChm9eJ4NJaMZioFfFqNGBx2KFx2Dh/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1t1EeOIblW9d4nhRc7hrPQw?pwd=qis7) | - |
+|Cascade RCNN | ConvNeXt-T | sRGB | RAW | 29.7 | [Config](configs/aodraw_slice/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice.py) | [Google](https://drive.google.com/file/d/1TF08ZVywXN5nM8jGvfespbxfb9qTJI86/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1UY1YtbyXqK5zFcbsLxYNGA?pwd=q7px) |[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
 
-**v3.3.0** was released in 5/1/2024:
+The directory [images_slice_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
 
-**[MM-Grounding-DINO: An Open and Comprehensive Pipeline for Unified Object Grounding and Detection](https://arxiv.org/abs/2401.02361)**
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|Cascade RCNN | Swin-T | RAW | RAW| 29.8 | [Config](configs/aodraw_slice/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1h2ahPnBftYITcrPtsKlT7ma_ST5E3P0C/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1SfpWp4EXThhJO-zQqoAJog?pwd=5k49) | - |
+|Cascade RCNN | ConvNeXt-T | RAW | RAW | 30.7 | [Config](configs/aodraw_slice/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1w1zlbPoCWeG3iYm34sJbRpUpCs8bdpvr/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1T7lY-JKb2B9javuQRROMgA?pwd=73mp) | [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) |
 
-Grounding DINO is a grounding pre-training model that unifies 2d open vocabulary object detection and phrase grounding, with wide applications. However, its training part has not been open sourced. Therefore, we propose MM-Grounding-DINO, which not only serves as an open source replication version of Grounding DINO, but also achieves significant performance improvement based on reconstructed data types, exploring different dataset combinations and initialization strategies. Moreover, we conduct evaluations from multiple dimensions, including OOD, REC, Phrase Grounding, OVD, and Fine-tune, to fully excavate the advantages and disadvantages of Grounding pre-training, hoping to provide inspiration for future work.
+The directory [images_slice_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
 
-code: [mm_grounding_dino/README.md](configs/mm_grounding_dino/README.md)
+## Training and Evaluation
 
-<div align=center>
-<img src="https://github.com/open-mmlab/mmdetection/assets/17425982/fb14d1ee-5469-44d2-b865-aac9850c429c"/>
-</div>
+#### Configs and pre-trained weights
 
-We are excited to announce our latest work on real-time object recognition tasks, **RTMDet**, a family of fully convolutional single-stage detectors. RTMDet not only achieves the best parameter-accuracy trade-off on object detection from tiny to extra-large model sizes but also obtains new state-of-the-art performance on instance segmentation and rotated object detection tasks. Details can be found in the [technical report](https://arxiv.org/abs/2212.07784). Pre-trained models are [here](configs/rtmdet).
+- We provide training and evaluation for RAW and sRGB object detection. 
+- The images in the AODRaw are recorded at a resolution of $6000\times 4000$. It is unrealistic to feed such huge images into the detectors. Thus, we adopt two experiment settings: 1) down-sampling the images into a lower resolution of $2000\times1333$, corresponding to [configs](#models-using-down-sampled-aodraw), and 2) slicing the images into a collection of $1280\times 1280$ patches, corresponding to [configs](#models-using-sliced-aodraw). **Please preprocess the AODRaw dataset or directly download the processed files in [datasets and downloading](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading).**
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/rtmdet-an-empirical-study-of-designing-real/real-time-instance-segmentation-on-mscoco)](https://paperswithcode.com/sota/real-time-instance-segmentation-on-mscoco?p=rtmdet-an-empirical-study-of-designing-real)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/rtmdet-an-empirical-study-of-designing-real/object-detection-in-aerial-images-on-dota-1)](https://paperswithcode.com/sota/object-detection-in-aerial-images-on-dota-1?p=rtmdet-an-empirical-study-of-designing-real)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/rtmdet-an-empirical-study-of-designing-real/object-detection-in-aerial-images-on-hrsc2016)](https://paperswithcode.com/sota/object-detection-in-aerial-images-on-hrsc2016?p=rtmdet-an-empirical-study-of-designing-real)
+Training and evaluation using down-sampled AODRaw:
+|  Task | Pre-training domain | Config path |
+|  ---------------------  | -------------------- |-------------------- |
+| sRGB object detection | sRGB | configs/aodraw/..._aodraw_srgb.py |
+| RAW object detection | sRGB | configs/aodraw/..._aodraw_raw.py |
+| RAW object detection | RAW | configs/aodraw/..._aodraw_raw_raw-pretraining.py |
 
-| Task                     | Dataset | AP                                   | FPS(TRT FP16 BS1 3090) |
-| ------------------------ | ------- | ------------------------------------ | ---------------------- |
-| Object Detection         | COCO    | 52.8                                 | 322                    |
-| Instance Segmentation    | COCO    | 44.6                                 | 188                    |
-| Rotated Object Detection | DOTA    | 78.9(single-scale)/81.3(multi-scale) | 121                    |
+Training and evaluation using sliced AODRaw:
+|  Task | Pre-training | Config path |
+|  ---------------------  | -------------------- |-------------------- |
+| sRGB object detection | sRGB | configs/aodraw_slice/..._aodraw_srgb_slice.py |
+| RAW object detection | sRGB | configs/aodraw_slice/..._aodraw_raw_slice.py |
+| RAW object detection | RAW | configs/aodraw_slice/..._aodraw_raw_slice_raw-pretraining.py |
 
-<div align=center>
-<img src="https://user-images.githubusercontent.com/12907710/208044554-1e8de6b5-48d8-44e4-a7b5-75076c7ebb71.png"/>
-</div>
+Pre-trained weights for ConvNeXt-T and Swin-T:
+|  Architecture | Pre-training domain | Downloading link |
+|  ---------------------  | -------------------- |-------------------- |
+| ConvNeXt-T | sRGB | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+| ConvNeXt-T | RAW |  [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) |
+| Swin-T | RAW |  [Google](https://drive.google.com/file/d/12hdeZMp6cn4dKIidL07ndY1xw59qAnbO/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1mCrunp0rrFUAlMrxiui9mQ?pwd=nm1r)  |
 
-## Installation
+#### Training
 
-Please refer to [Installation](https://mmdetection.readthedocs.io/en/latest/get_started.html) for installation instructions.
+##### Single GPU
 
-## Getting Started
+   ```shell
+   python tools/train.py ${CONFIG_FILE} [optional arguments]
+   ```
 
-Please see [Overview](https://mmdetection.readthedocs.io/en/latest/get_started.html) for the general introduction of MMDetection.
+##### Multi GPU
 
-For detailed user guides and advanced guides, please refer to our [documentation](https://mmdetection.readthedocs.io/en/latest/):
+   ```shell
+   bash tools/dist_train.sh ${CONFIG_FILE} ${GPU_NUM} [optional arguments]
+   ```
 
-- User Guides
+For more training and evaluation command details, please refer to [mmdetection](https://github.com/open-mmlab/mmdetection?tab=readme-ov-file#getting-started).
 
-  <details>
+#### Evaluation
 
-  - [Train & Test](https://mmdetection.readthedocs.io/en/latest/user_guides/index.html#train-test)
-    - [Learn about Configs](https://mmdetection.readthedocs.io/en/latest/user_guides/config.html)
-    - [Inference with existing models](https://mmdetection.readthedocs.io/en/latest/user_guides/inference.html)
-    - [Dataset Prepare](https://mmdetection.readthedocs.io/en/latest/user_guides/dataset_prepare.html)
-    - [Test existing models on standard datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/test.html)
-    - [Train predefined models on standard datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/train.html)
-    - [Train with customized datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/train.html#train-with-customized-datasets)
-    - [Train with customized models and standard datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/new_model.html)
-    - [Finetuning Models](https://mmdetection.readthedocs.io/en/latest/user_guides/finetune.html)
-    - [Test Results Submission](https://mmdetection.readthedocs.io/en/latest/user_guides/test_results_submission.html)
-    - [Weight initialization](https://mmdetection.readthedocs.io/en/latest/user_guides/init_cfg.html)
-    - [Use a single stage detector as RPN](https://mmdetection.readthedocs.io/en/latest/user_guides/single_stage_as_rpn.html)
-    - [Semi-supervised Object Detection](https://mmdetection.readthedocs.io/en/latest/user_guides/semi_det.html)
-  - [Useful Tools](https://mmdetection.readthedocs.io/en/latest/user_guides/index.html#useful-tools)
+##### Single GPU
 
-  </details>
+   ```shell
+   python tools/test.py ${CONFIG_FILE} ${CHECKPOINT_FILE} [optional arguments]
+   ```
 
-- Advanced Guides
+##### Multi GPU
 
-  <details>
+   ```shell
+   bash tools/dist_test.sh ${CONFIG_FILE} ${CHECKPOINT_FILE} ${GPU_NUM} [optional arguments]
+   ```
 
-  - [Basic Concepts](https://mmdetection.readthedocs.io/en/latest/advanced_guides/index.html#basic-concepts)
-  - [Component Customization](https://mmdetection.readthedocs.io/en/latest/advanced_guides/index.html#component-customization)
-  - [How to](https://mmdetection.readthedocs.io/en/latest/advanced_guides/index.html#how-to)
-
-  </details>
-
-We also provide object detection colab tutorial [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_Tutorial.ipynb) and instance segmentation colab tutorial [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_InstanceSeg_Tutorial.ipynb).
-
-To migrate from MMDetection 2.x, please refer to [migration](https://mmdetection.readthedocs.io/en/latest/migration.html).
-
-## Overview of Benchmark and Model Zoo
-
-Results and models are available in the [model zoo](docs/en/model_zoo.md).
-
-<div align="center">
-  <b>Architectures</b>
-</div>
-<table align="center">
-  <tbody>
-    <tr align="center" valign="bottom">
-      <td>
-        <b>Object Detection</b>
-      </td>
-      <td>
-        <b>Instance Segmentation</b>
-      </td>
-      <td>
-        <b>Panoptic Segmentation</b>
-      </td>
-      <td>
-        <b>Other</b>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td>
-        <ul>
-            <li><a href="configs/fast_rcnn">Fast R-CNN (ICCV'2015)</a></li>
-            <li><a href="configs/faster_rcnn">Faster R-CNN (NeurIPS'2015)</a></li>
-            <li><a href="configs/rpn">RPN (NeurIPS'2015)</a></li>
-            <li><a href="configs/ssd">SSD (ECCV'2016)</a></li>
-            <li><a href="configs/retinanet">RetinaNet (ICCV'2017)</a></li>
-            <li><a href="configs/cascade_rcnn">Cascade R-CNN (CVPR'2018)</a></li>
-            <li><a href="configs/yolo">YOLOv3 (ArXiv'2018)</a></li>
-            <li><a href="configs/cornernet">CornerNet (ECCV'2018)</a></li>
-            <li><a href="configs/grid_rcnn">Grid R-CNN (CVPR'2019)</a></li>
-            <li><a href="configs/guided_anchoring">Guided Anchoring (CVPR'2019)</a></li>
-            <li><a href="configs/fsaf">FSAF (CVPR'2019)</a></li>
-            <li><a href="configs/centernet">CenterNet (CVPR'2019)</a></li>
-            <li><a href="configs/libra_rcnn">Libra R-CNN (CVPR'2019)</a></li>
-            <li><a href="configs/tridentnet">TridentNet (ICCV'2019)</a></li>
-            <li><a href="configs/fcos">FCOS (ICCV'2019)</a></li>
-            <li><a href="configs/reppoints">RepPoints (ICCV'2019)</a></li>
-            <li><a href="configs/free_anchor">FreeAnchor (NeurIPS'2019)</a></li>
-            <li><a href="configs/cascade_rpn">CascadeRPN (NeurIPS'2019)</a></li>
-            <li><a href="configs/foveabox">Foveabox (TIP'2020)</a></li>
-            <li><a href="configs/double_heads">Double-Head R-CNN (CVPR'2020)</a></li>
-            <li><a href="configs/atss">ATSS (CVPR'2020)</a></li>
-            <li><a href="configs/nas_fcos">NAS-FCOS (CVPR'2020)</a></li>
-            <li><a href="configs/centripetalnet">CentripetalNet (CVPR'2020)</a></li>
-            <li><a href="configs/autoassign">AutoAssign (ArXiv'2020)</a></li>
-            <li><a href="configs/sabl">Side-Aware Boundary Localization (ECCV'2020)</a></li>
-            <li><a href="configs/dynamic_rcnn">Dynamic R-CNN (ECCV'2020)</a></li>
-            <li><a href="configs/detr">DETR (ECCV'2020)</a></li>
-            <li><a href="configs/paa">PAA (ECCV'2020)</a></li>
-            <li><a href="configs/vfnet">VarifocalNet (CVPR'2021)</a></li>
-            <li><a href="configs/sparse_rcnn">Sparse R-CNN (CVPR'2021)</a></li>
-            <li><a href="configs/yolof">YOLOF (CVPR'2021)</a></li>
-            <li><a href="configs/yolox">YOLOX (CVPR'2021)</a></li>
-            <li><a href="configs/deformable_detr">Deformable DETR (ICLR'2021)</a></li>
-            <li><a href="configs/tood">TOOD (ICCV'2021)</a></li>
-            <li><a href="configs/ddod">DDOD (ACM MM'2021)</a></li>
-            <li><a href="configs/rtmdet">RTMDet (ArXiv'2022)</a></li>
-            <li><a href="configs/conditional_detr">Conditional DETR (ICCV'2021)</a></li>
-            <li><a href="configs/dab_detr">DAB-DETR (ICLR'2022)</a></li>
-            <li><a href="configs/dino">DINO (ICLR'2023)</a></li>
-            <li><a href="configs/glip">GLIP (CVPR'2022)</a></li>
-            <li><a href="configs/ddq">DDQ (CVPR'2023)</a></li>
-            <li><a href="projects/DiffusionDet">DiffusionDet (ArXiv'2023)</a></li>
-            <li><a href="projects/EfficientDet">EfficientDet (CVPR'2020)</a></li>
-            <li><a href="projects/ViTDet">ViTDet (ECCV'2022)</a></li>
-            <li><a href="projects/Detic">Detic (ECCV'2022)</a></li>
-            <li><a href="projects/CO-DETR">CO-DETR (ICCV'2023)</a></li>
-      </ul>
-      </td>
-      <td>
-        <ul>
-          <li><a href="configs/mask_rcnn">Mask R-CNN (ICCV'2017)</a></li>
-          <li><a href="configs/cascade_rcnn">Cascade Mask R-CNN (CVPR'2018)</a></li>
-          <li><a href="configs/ms_rcnn">Mask Scoring R-CNN (CVPR'2019)</a></li>
-          <li><a href="configs/htc">Hybrid Task Cascade (CVPR'2019)</a></li>
-          <li><a href="configs/yolact">YOLACT (ICCV'2019)</a></li>
-          <li><a href="configs/instaboost">InstaBoost (ICCV'2019)</a></li>
-          <li><a href="configs/solo">SOLO (ECCV'2020)</a></li>
-          <li><a href="configs/point_rend">PointRend (CVPR'2020)</a></li>
-          <li><a href="configs/detectors">DetectoRS (ArXiv'2020)</a></li>
-          <li><a href="configs/solov2">SOLOv2 (NeurIPS'2020)</a></li>
-          <li><a href="configs/scnet">SCNet (AAAI'2021)</a></li>
-          <li><a href="configs/queryinst">QueryInst (ICCV'2021)</a></li>
-          <li><a href="configs/mask2former">Mask2Former (ArXiv'2021)</a></li>
-          <li><a href="configs/condinst">CondInst (ECCV'2020)</a></li>
-          <li><a href="projects/SparseInst">SparseInst (CVPR'2022)</a></li>
-          <li><a href="configs/rtmdet">RTMDet (ArXiv'2022)</a></li>
-          <li><a href="configs/boxinst">BoxInst (CVPR'2021)</a></li>
-          <li><a href="projects/ConvNeXt-V2">ConvNeXt-V2 (Arxiv'2023)</a></li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li><a href="configs/panoptic_fpn">Panoptic FPN (CVPR'2019)</a></li>
-          <li><a href="configs/maskformer">MaskFormer (NeurIPS'2021)</a></li>
-          <li><a href="configs/mask2former">Mask2Former (ArXiv'2021)</a></li>
-          <li><a href="configs/XDecoder">XDecoder (CVPR'2023)</a></li>
-        </ul>
-      </td>
-      <td>
-        </ul>
-          <li><b>Contrastive Learning</b></li>
-        <ul>
-        <ul>
-          <li><a href="configs/selfsup_pretrain">SwAV (NeurIPS'2020)</a></li>
-          <li><a href="configs/selfsup_pretrain">MoCo (CVPR'2020)</a></li>
-          <li><a href="configs/selfsup_pretrain">MoCov2 (ArXiv'2020)</a></li>
-        </ul>
-        </ul>
-        </ul>
-          <li><b>Distillation</b></li>
-        <ul>
-        <ul>
-          <li><a href="configs/ld">Localization Distillation (CVPR'2022)</a></li>
-          <li><a href="configs/lad">Label Assignment Distillation (WACV'2022)</a></li>
-        </ul>
-        </ul>
-          <li><b>Semi-Supervised Object Detection</b></li>
-        <ul>
-        <ul>
-          <li><a href="configs/soft_teacher">Soft Teacher (ICCV'2021)</a></li>
-        </ul>
-        </ul>
-      </ul>
-      </td>
-    </tr>
-</td>
-    </tr>
-  </tbody>
-</table>
-
-<div align="center">
-  <b>Components</b>
-</div>
-<table align="center">
-  <tbody>
-    <tr align="center" valign="bottom">
-      <td>
-        <b>Backbones</b>
-      </td>
-      <td>
-        <b>Necks</b>
-      </td>
-      <td>
-        <b>Loss</b>
-      </td>
-      <td>
-        <b>Common</b>
-      </td>
-    </tr>
-    <tr valign="top">
-      <td>
-      <ul>
-        <li>VGG (ICLR'2015)</li>
-        <li>ResNet (CVPR'2016)</li>
-        <li>ResNeXt (CVPR'2017)</li>
-        <li>MobileNetV2 (CVPR'2018)</li>
-        <li><a href="configs/hrnet">HRNet (CVPR'2019)</a></li>
-        <li><a href="configs/empirical_attention">Generalized Attention (ICCV'2019)</a></li>
-        <li><a href="configs/gcnet">GCNet (ICCVW'2019)</a></li>
-        <li><a href="configs/res2net">Res2Net (TPAMI'2020)</a></li>
-        <li><a href="configs/regnet">RegNet (CVPR'2020)</a></li>
-        <li><a href="configs/resnest">ResNeSt (ArXiv'2020)</a></li>
-        <li><a href="configs/pvt">PVT (ICCV'2021)</a></li>
-        <li><a href="configs/swin">Swin (CVPR'2021)</a></li>
-        <li><a href="configs/pvt">PVTv2 (ArXiv'2021)</a></li>
-        <li><a href="configs/resnet_strikes_back">ResNet strikes back (ArXiv'2021)</a></li>
-        <li><a href="configs/efficientnet">EfficientNet (ArXiv'2021)</a></li>
-        <li><a href="configs/convnext">ConvNeXt (CVPR'2022)</a></li>
-        <li><a href="projects/ConvNeXt-V2">ConvNeXtv2 (ArXiv'2023)</a></li>
-      </ul>
-      </td>
-      <td>
-      <ul>
-        <li><a href="configs/pafpn">PAFPN (CVPR'2018)</a></li>
-        <li><a href="configs/nas_fpn">NAS-FPN (CVPR'2019)</a></li>
-        <li><a href="configs/carafe">CARAFE (ICCV'2019)</a></li>
-        <li><a href="configs/fpg">FPG (ArXiv'2020)</a></li>
-        <li><a href="configs/groie">GRoIE (ICPR'2020)</a></li>
-        <li><a href="configs/dyhead">DyHead (CVPR'2021)</a></li>
-      </ul>
-      </td>
-      <td>
-        <ul>
-          <li><a href="configs/ghm">GHM (AAAI'2019)</a></li>
-          <li><a href="configs/gfl">Generalized Focal Loss (NeurIPS'2020)</a></li>
-          <li><a href="configs/seesaw_loss">Seasaw Loss (CVPR'2021)</a></li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li><a href="configs/faster_rcnn/faster-rcnn_r50_fpn_ohem_1x_coco.py">OHEM (CVPR'2016)</a></li>
-          <li><a href="configs/gn">Group Normalization (ECCV'2018)</a></li>
-          <li><a href="configs/dcn">DCN (ICCV'2017)</a></li>
-          <li><a href="configs/dcnv2">DCNv2 (CVPR'2019)</a></li>
-          <li><a href="configs/gn+ws">Weight Standardization (ArXiv'2019)</a></li>
-          <li><a href="configs/pisa">Prime Sample Attention (CVPR'2020)</a></li>
-          <li><a href="configs/strong_baselines">Strong Baselines (CVPR'2021)</a></li>
-          <li><a href="configs/resnet_strikes_back">Resnet strikes back (ArXiv'2021)</a></li>
-        </ul>
-      </td>
-    </tr>
-</td>
-    </tr>
-  </tbody>
-</table>
-
-Some other methods are also supported in [projects using MMDetection](./docs/en/notes/projects.md).
-
-## FAQ
-
-Please refer to [FAQ](docs/en/notes/faq.md) for frequently asked questions.
-
-## Contributing
-
-We appreciate all contributions to improve MMDetection. Ongoing projects can be found in out [GitHub Projects](https://github.com/open-mmlab/mmdetection/projects). Welcome community users to participate in these projects. Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
-
-## Acknowledgement
-
-MMDetection is an open source project that is contributed by researchers and engineers from various colleges and companies. We appreciate all the contributors who implement their methods or add new features, as well as users who give valuable feedbacks.
-We wish that the toolbox and benchmark could serve the growing research community by providing a flexible toolkit to reimplement existing methods and develop their own new detectors.
+For more training and evaluation command details, please refer to [mmdetection](https://github.com/open-mmlab/mmdetection?tab=readme-ov-file#getting-started).
 
 ## Citation
-
-If you use this toolbox or benchmark in your research, please cite this project.
-
 ```
-@article{mmdetection,
-  title   = {{MMDetection}: Open MMLab Detection Toolbox and Benchmark},
-  author  = {Chen, Kai and Wang, Jiaqi and Pang, Jiangmiao and Cao, Yuhang and
-             Xiong, Yu and Li, Xiaoxiao and Sun, Shuyang and Feng, Wansen and
-             Liu, Ziwei and Xu, Jiarui and Zhang, Zheng and Cheng, Dazhi and
-             Zhu, Chenchen and Cheng, Tianheng and Zhao, Qijie and Li, Buyu and
-             Lu, Xin and Zhu, Rui and Wu, Yue and Dai, Jifeng and Wang, Jingdong
-             and Shi, Jianping and Ouyang, Wanli and Loy, Chen Change and Lin, Dahua},
-  journal= {arXiv preprint arXiv:1906.07155},
-  year={2019}
+@article{li2024aodraw,
+  title={Towards RAW Object Detection in Diverse Conditions}, 
+  author={Zhong-Yu Li and Xin Jin and Boyuan Sun and Chun-Le Guo and Ming-Ming Cheng},
+  journal={arXiv preprint arXiv:2411.15678},
+  year={2024},
 }
 ```
 
 ## License
 
-This project is released under the [Apache 2.0 license](LICENSE).
+The code is released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) for NonCommercial use only.
 
-## Projects in OpenMMLab
+## Acknowledgement
 
-- [MMEngine](https://github.com/open-mmlab/mmengine): OpenMMLab foundational library for training deep learning models.
-- [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab foundational library for computer vision.
-- [MMPreTrain](https://github.com/open-mmlab/mmpretrain): OpenMMLab pre-training toolbox and benchmark.
-- [MMagic](https://github.com/open-mmlab/mmagic): Open**MM**Lab **A**dvanced, **G**enerative and **I**ntelligent **C**reation toolbox.
-- [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab detection toolbox and benchmark.
-- [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab's next-generation platform for general 3D object detection.
-- [MMRotate](https://github.com/open-mmlab/mmrotate): OpenMMLab rotated object detection toolbox and benchmark.
-- [MMYOLO](https://github.com/open-mmlab/mmyolo): OpenMMLab YOLO series toolbox and benchmark.
-- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab semantic segmentation toolbox and benchmark.
-- [MMOCR](https://github.com/open-mmlab/mmocr): OpenMMLab text detection, recognition, and understanding toolbox.
-- [MMPose](https://github.com/open-mmlab/mmpose): OpenMMLab pose estimation toolbox and benchmark.
-- [MMHuman3D](https://github.com/open-mmlab/mmhuman3d): OpenMMLab 3D human parametric model toolbox and benchmark.
-- [MMSelfSup](https://github.com/open-mmlab/mmselfsup): OpenMMLab self-supervised learning toolbox and benchmark.
-- [MMRazor](https://github.com/open-mmlab/mmrazor): OpenMMLab model compression toolbox and benchmark.
-- [MMFewShot](https://github.com/open-mmlab/mmfewshot): OpenMMLab fewshot learning toolbox and benchmark.
-- [MMAction2](https://github.com/open-mmlab/mmaction2): OpenMMLab's next-generation action understanding toolbox and benchmark.
-- [MMTracking](https://github.com/open-mmlab/mmtracking): OpenMMLab video perception toolbox and benchmark.
-- [MMFlow](https://github.com/open-mmlab/mmflow): OpenMMLab optical flow toolbox and benchmark.
-- [MMEditing](https://github.com/open-mmlab/mmediting): OpenMMLab image and video editing toolbox.
-- [MMGeneration](https://github.com/open-mmlab/mmgeneration): OpenMMLab image and video generative models toolbox.
-- [MMDeploy](https://github.com/open-mmlab/mmdeploy): OpenMMLab model deployment framework.
-- [MIM](https://github.com/open-mmlab/mim): MIM installs OpenMMLab packages.
-- [MMEval](https://github.com/open-mmlab/mmeval): A unified evaluation library for multiple machine learning libraries.
-- [Playground](https://github.com/open-mmlab/playground): A central hub for gathering and showcasing amazing projects built upon OpenMMLab.
+This repo is modified from [mmdetection](https://github.com/open-mmlab/mmdetection).
+
