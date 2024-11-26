@@ -7,13 +7,13 @@
 ## Table of Contents
 - [Introduction](#introduction)
 - [Install](#install)
-- [ModelZoo](#modelzoo)
-   - [Models using down-sampled AODRaw](#models-using-down-sampled-aodraw)
-   - [Models using sliced AODRaw](#models-using-sliced-aodraw)
 - [Training and Evaluation](#training-and-evaluation)
    - [Configs and pre-trained weights](#configs-and-pre-trained-weights)
    - [Training](#training)
    - [Evaluation](#evaluation)
+- [ModelZoo](#modelzoo)
+   - [Models using down-sampled AODRaw](#models-using-down-sampled-aodraw)
+   - [Models using sliced AODRaw](#models-using-sliced-aodraw)
 - [Citation](#citation)
 - [License](#license)
 - [Acknowledgement](#acknowledgement)
@@ -29,65 +29,6 @@ Please refer to [AODRaw]() to download and preprocess our AODRaw dataset.
 ## Install
 
 Please refer to the [README of mmdetection](README_MMDET.md).
-
-## ModelZoo
-
-#### Models using down-sampled AODRaw
-
-Please follow [downsampling](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#down-sampling-precrossing) to preprocess the images or download preprocessed images in [download](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading).
-
-|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
-|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
-|Faster RCNN | ResNet-50 | sRGB | sRGB | 23.3 | [Config](configs/aodraw/faster-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1dUHyWXNLdg4WW165tvbsDp5D7G0OjD0Q/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1XPipT0uMl8mqxUjjG5EoWA?pwd=w251) | - |
-|Retinanet | ResNet-50 | sRGB | sRGB | 19.1 | [Config](configs/aodraw/retinanet_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1CFTCP1VVgx3pfA-ITE2S2kJ6C3H6pqdW/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/19JoTMeaTKOcJOcKzVnRQWg?pwd=qvxf) | - |
-|GFocal | ResNet-50 | sRGB | sRGB | 24.2 | [Config](configs/aodraw/gfl_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1HRCvJJyQUpWo9-XQaG93BQ4HReQUaPYI/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1iMHk3eM5gSJqUSG7zDNm3g?pwd=se68) | - |
-|Sparse RCNN | ResNet-50 | sRGB | sRGB | 15.6 | [Config](configs/aodraw/sparse-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/11TKxMNblfzHQKWvQ_e2UDxzX1ZSkhEbw/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1HBAbtZghftRDytq_VuNqvQ?pwd=wy8j) | - |
-|Deformable DETR | ResNet-50 | sRGB | sRGB | 16.6 | [confog](configs/aodraw/deformable-detr_r50_16xb2-100e_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1ToaCFi0rXe5RdwTkh9OIh9RxlIxtyydC/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/154F3nnSGFEujZBOHGGPsMQ?pwd=vbct) | - |
-|Cascade RCNN| ResNet-50 | sRGB | sRGB | 25.6 | [Config](configs/aodraw/cascade-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1x9ggEXeeTMcHrt42ycWzn7oJvgO4CHj3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/166HVewRzxweHidfilEqSwA?pwd=7hgm) |  - |
-|Faster RCNN | Swin-T | sRGB |sRGB | 28.4 | [Config](configs/aodraw/faster-rcnn_swin-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/14uryTqn4PfSMHll-3jVoY3dfv6BMeBpV/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1OIMEOzdEoO4zQWKfnEIWeg?pwd=dzah) | - |
-|Faster RCNN | ConvNeXt-T | sRGB | sRGB | 29.7 | [Config](configs/aodraw/faster-rcnn_convnext-t-p4-w7_fpn_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1OjNIZ42mlPaMwy10BA4NVnCs9jqPWYTc/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1EKc9gdKqrrWHhCI2qgj9bw?pwd=ibvy) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
-|GFocal | Swin-T | sRGB | sRGB | 30.1 | [Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1jPVq-gkNRkFAqM1HKLWmHBxi5i7hq8l0/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/16rdWnleYcxR6pnm2k3f7Yw?pwd=vhe7) | - |
-|GFocal | ConvNeXt-T | sRGB | sRGB | 32.1 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1YMasTjI53OSWToD1btC2o25XYt36uiur/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1tatP2KyudFerkB3_WHyqDQ?pwd=zpws) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
-|Cascade RCNN | Swin-T | sRGB | sRGB | 32.0 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1yZ93gIuogxUU8eRenJ5eEFykrdYyPAW7/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1JeoZfTMLWh1JRX4CcUlWmg?pwd=sbpk) |  - |
-|Cascade RCNN | ConvNeXt-T | sRGB | sRGB | 34.0 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1hf9G3LYrGWd_37CIJzZZr_TBjbuFfGyH/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1OqJ9h4Fot8QJbQiD2gc4Ng?pwd=2kud) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
-
-The directory [images_downsampled_srgb](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
-
-|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
-|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
-|GFocal | Swin-T | sRGB | RAW | 29.9 |[Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/1x_uX3wfI1s2qU7ILe9TOy1ikcCyfI8lf/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1Rw7ebbJm93WdQTuz5gOeCQ?pwd=3xcd) | - |
-|GFocal | ConvNeXt-T | sRGB | RAW | 31.5 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/159ENxlvyP-3mJ8sDDQ5l-b3vOSsvG-XR/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1iqHJe4RPKmjwDM2rzc_CVg?pwd=xgv9) |[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
-|Cascade RCNN | Swin-T | sRGB | RAW | 31.7 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/1C8XEdLOw8b-K7cscTj9964DKplNK1udQ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1_UGoMxofGI-cIMSS4JnzqQ?pwd=yf1u) | - |
-|Cascade RCNN | ConvNeXt-T | sRGB | RAW | 33.7 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/15K0wNjlMK1QkQPXblXp-Pced4dLIynYV/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1lIGgUz_AWwPBu3b-luHjdg?pwd=er6c)|[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
-
-The directory [images_downsampled_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
-
-|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
-|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
-|GFocal | Swin-T | RAW | RAW | 30.7 | [Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/18e8cnEsQOEjdp1N99Sqnn_ZHofs0fjcY/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1AolwF5_1uZ1Xhw8E5ibKSA?pwd=s3vi) | [Google](https://drive.google.com/file/d/12hdeZMp6cn4dKIidL07ndY1xw59qAnbO/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1mCrunp0rrFUAlMrxiui9mQ?pwd=nm1r)  |
-|GFocal | ConvNeXt-T | RAW | RAW | 32.1 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1cRtbbsSpokYcp_dte-YQDeeIB_n2A40F/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1eaqVwbTLnsIMFYMCXUHRdg?pwd=r7xu) | [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) | 
-|Cascade RCNN | Swin-T | RAW | RAW | 32.2 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1BxuYMtKhWphoaGcH-UC7BzQYc45ZiW73/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1EpTn7eQQB-6v4be-B17vHg?pwd=7kfs) | [Google](https://drive.google.com/file/d/12hdeZMp6cn4dKIidL07ndY1xw59qAnbO/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1mCrunp0rrFUAlMrxiui9mQ?pwd=nm1r)  | 
-|Cascade RCNN | ConvNeXt-T | RAW | RAW | 34.8 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1nfwyfLK3nQ6cjGXkuHdFKRlEx1WJUgN_/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1FOda_Ipw17kHxWTLoqMXHA?pwd=kh1b) |  [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) |
-
-The directory [images_downsampled_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
-
-#### Models using sliced AODRaw
-Please follow [slicing](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#slicing-precrossing) to preprocess the images or download preprocessed images in [download](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading).
-
-
-|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
-|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
-|Cascade RCNN | Swin-T | sRGB | RAW | 29.2 | [Config](configs/aodraw_slice/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice.py) | [Google](https://drive.google.com/file/d/1jNbChm9eJ4NJaMZioFfFqNGBx2KFx2Dh/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1t1EeOIblW9d4nhRc7hrPQw?pwd=qis7) | - |
-|Cascade RCNN | ConvNeXt-T | sRGB | RAW | 29.7 | [Config](configs/aodraw_slice/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice.py) | [Google](https://drive.google.com/file/d/1TF08ZVywXN5nM8jGvfespbxfb9qTJI86/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1UY1YtbyXqK5zFcbsLxYNGA?pwd=q7px) |[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
-
-The directory [images_slice_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
-
-|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
-|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
-|Cascade RCNN | Swin-T | RAW | RAW| 29.8 | [Config](configs/aodraw_slice/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1h2ahPnBftYITcrPtsKlT7ma_ST5E3P0C/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1SfpWp4EXThhJO-zQqoAJog?pwd=5k49) | - |
-|Cascade RCNN | ConvNeXt-T | RAW | RAW | 30.7 | [Config](configs/aodraw_slice/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1w1zlbPoCWeG3iYm34sJbRpUpCs8bdpvr/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1T7lY-JKb2B9javuQRROMgA?pwd=73mp) | [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) |
-
-The directory [images_slice_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
 
 ## Training and Evaluation
 
@@ -148,6 +89,66 @@ For more training and evaluation command details, please refer to [mmdetection](
    ```
 
 For more training and evaluation command details, please refer to [mmdetection](https://github.com/open-mmlab/mmdetection?tab=readme-ov-file#getting-started).
+
+
+## ModelZoo
+
+#### Models using down-sampled AODRaw
+
+Please follow [downsampling](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#down-sampling-precrossing) to preprocess the images or download preprocessed images in [download](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading).
+
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|Faster RCNN | ResNet-50 | sRGB | sRGB | 23.3 | [Config](configs/aodraw/faster-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1dUHyWXNLdg4WW165tvbsDp5D7G0OjD0Q/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1XPipT0uMl8mqxUjjG5EoWA?pwd=w251) | - |
+|Retinanet | ResNet-50 | sRGB | sRGB | 19.1 | [Config](configs/aodraw/retinanet_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1CFTCP1VVgx3pfA-ITE2S2kJ6C3H6pqdW/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/19JoTMeaTKOcJOcKzVnRQWg?pwd=qvxf) | - |
+|GFocal | ResNet-50 | sRGB | sRGB | 24.2 | [Config](configs/aodraw/gfl_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1HRCvJJyQUpWo9-XQaG93BQ4HReQUaPYI/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1iMHk3eM5gSJqUSG7zDNm3g?pwd=se68) | - |
+|Sparse RCNN | ResNet-50 | sRGB | sRGB | 15.6 | [Config](configs/aodraw/sparse-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/11TKxMNblfzHQKWvQ_e2UDxzX1ZSkhEbw/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1HBAbtZghftRDytq_VuNqvQ?pwd=wy8j) | - |
+|Deformable DETR | ResNet-50 | sRGB | sRGB | 16.6 | [confog](configs/aodraw/deformable-detr_r50_16xb2-100e_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1ToaCFi0rXe5RdwTkh9OIh9RxlIxtyydC/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/154F3nnSGFEujZBOHGGPsMQ?pwd=vbct) | - |
+|Cascade RCNN| ResNet-50 | sRGB | sRGB | 25.6 | [Config](configs/aodraw/cascade-rcnn_r50_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1x9ggEXeeTMcHrt42ycWzn7oJvgO4CHj3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/166HVewRzxweHidfilEqSwA?pwd=7hgm) |  - |
+|Faster RCNN | Swin-T | sRGB |sRGB | 28.4 | [Config](configs/aodraw/faster-rcnn_swin-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/14uryTqn4PfSMHll-3jVoY3dfv6BMeBpV/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1OIMEOzdEoO4zQWKfnEIWeg?pwd=dzah) | - |
+|Faster RCNN | ConvNeXt-T | sRGB | sRGB | 29.7 | [Config](configs/aodraw/faster-rcnn_convnext-t-p4-w7_fpn_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1OjNIZ42mlPaMwy10BA4NVnCs9jqPWYTc/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1EKc9gdKqrrWHhCI2qgj9bw?pwd=ibvy) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+|GFocal | Swin-T | sRGB | sRGB | 30.1 | [Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1jPVq-gkNRkFAqM1HKLWmHBxi5i7hq8l0/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/16rdWnleYcxR6pnm2k3f7Yw?pwd=vhe7) | - |
+|GFocal | ConvNeXt-T | sRGB | sRGB | 32.1 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1YMasTjI53OSWToD1btC2o25XYt36uiur/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1tatP2KyudFerkB3_WHyqDQ?pwd=zpws) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+|Cascade RCNN | Swin-T | sRGB | sRGB | 32.0 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1yZ93gIuogxUU8eRenJ5eEFykrdYyPAW7/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1JeoZfTMLWh1JRX4CcUlWmg?pwd=sbpk) |  - |
+|Cascade RCNN | ConvNeXt-T | sRGB | sRGB | 34.0 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_srgb.py) | [Google](https://drive.google.com/file/d/1hf9G3LYrGWd_37CIJzZZr_TBjbuFfGyH/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1OqJ9h4Fot8QJbQiD2gc4Ng?pwd=2kud) | [Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+
+The directory [images_downsampled_srgb](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
+
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|GFocal | Swin-T | sRGB | RAW | 29.9 |[Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/1x_uX3wfI1s2qU7ILe9TOy1ikcCyfI8lf/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1Rw7ebbJm93WdQTuz5gOeCQ?pwd=3xcd) | - |
+|GFocal | ConvNeXt-T | sRGB | RAW | 31.5 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/159ENxlvyP-3mJ8sDDQ5l-b3vOSsvG-XR/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1iqHJe4RPKmjwDM2rzc_CVg?pwd=xgv9) |[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+|Cascade RCNN | Swin-T | sRGB | RAW | 31.7 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/1C8XEdLOw8b-K7cscTj9964DKplNK1udQ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1_UGoMxofGI-cIMSS4JnzqQ?pwd=yf1u) | - |
+|Cascade RCNN | ConvNeXt-T | sRGB | RAW | 33.7 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw.py) | [Google](https://drive.google.com/file/d/15K0wNjlMK1QkQPXblXp-Pced4dLIynYV/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1lIGgUz_AWwPBu3b-luHjdg?pwd=er6c)|[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+
+The directory [images_downsampled_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
+
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|GFocal | Swin-T | RAW | RAW | 30.7 | [Config](configs/aodraw/gfl_swin-t-p4-w7_fpn_1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/18e8cnEsQOEjdp1N99Sqnn_ZHofs0fjcY/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1AolwF5_1uZ1Xhw8E5ibKSA?pwd=s3vi) | [Google](https://drive.google.com/file/d/12hdeZMp6cn4dKIidL07ndY1xw59qAnbO/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1mCrunp0rrFUAlMrxiui9mQ?pwd=nm1r)  |
+|GFocal | ConvNeXt-T | RAW | RAW | 32.1 | [Config](configs/aodraw/gfl_convnext-t-p4-w7_fpn_1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1cRtbbsSpokYcp_dte-YQDeeIB_n2A40F/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1eaqVwbTLnsIMFYMCXUHRdg?pwd=r7xu) | [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) | 
+|Cascade RCNN | Swin-T | RAW | RAW | 32.2 | [Config](configs/aodraw/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1BxuYMtKhWphoaGcH-UC7BzQYc45ZiW73/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1EpTn7eQQB-6v4be-B17vHg?pwd=7kfs) | [Google](https://drive.google.com/file/d/12hdeZMp6cn4dKIidL07ndY1xw59qAnbO/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1mCrunp0rrFUAlMrxiui9mQ?pwd=nm1r)  | 
+|Cascade RCNN | ConvNeXt-T | RAW | RAW | 34.8 | [Config](configs/aodraw/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1nfwyfLK3nQ6cjGXkuHdFKRlEx1WJUgN_/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1FOda_Ipw17kHxWTLoqMXHA?pwd=kh1b) |  [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) |
+
+The directory [images_downsampled_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
+
+#### Models using sliced AODRaw
+Please follow [slicing](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#slicing-precrossing) to preprocess the images or download preprocessed images in [download](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading).
+
+
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|Cascade RCNN | Swin-T | sRGB | RAW | 29.2 | [Config](configs/aodraw_slice/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice.py) | [Google](https://drive.google.com/file/d/1jNbChm9eJ4NJaMZioFfFqNGBx2KFx2Dh/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1t1EeOIblW9d4nhRc7hrPQw?pwd=qis7) | - |
+|Cascade RCNN | ConvNeXt-T | sRGB | RAW | 29.7 | [Config](configs/aodraw_slice/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice.py) | [Google](https://drive.google.com/file/d/1TF08ZVywXN5nM8jGvfespbxfb9qTJI86/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1UY1YtbyXqK5zFcbsLxYNGA?pwd=q7px) |[Google](https://drive.google.com/file/d/12R1-QcqMyjVo66nOp5NtK9-tSzj11SV3/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1js44KwmeD4dQGY29zreQaQ?pwd=vecd)   |
+
+The directory [images_slice_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
+
+|  Detector |Backbone | Pre-training domain | Fine-tuning domain | AP | Config | Model | Pre-trained weights |
+|  ---------------------  | -------------------- | :--------------------: | :--------------------: | :--------------------: | :--------------------: |  :--------------------: |:--------------------:|
+|Cascade RCNN | Swin-T | RAW | RAW| 29.8 | [Config](configs/aodraw_slice/cascade-rcnn_swin-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1h2ahPnBftYITcrPtsKlT7ma_ST5E3P0C/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1SfpWp4EXThhJO-zQqoAJog?pwd=5k49) | - |
+|Cascade RCNN | ConvNeXt-T | RAW | RAW | 30.7 | [Config](configs/aodraw_slice/cascade-rcnn_convnext-t-p4-w7_fpn_4conv1fc-giou_amp-1x_aodraw_raw_slice_raw-pretraining.py) | [Google](https://drive.google.com/file/d/1w1zlbPoCWeG3iYm34sJbRpUpCs8bdpvr/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1T7lY-JKb2B9javuQRROMgA?pwd=73mp) | [Google](https://drive.google.com/file/d/1U9KK7-PcWIxbDPSUs6bx2ig7q_9NX_KZ/view?usp=sharing) and [Baidu](https://pan.baidu.com/s/1van4UUYqL90w9VHk68fC3A?pwd=9262) |
+
+The directory [images_slice_raw](https://github.com/lzyhha/AODRaw/tree/main?tab=readme-ov-file#dataset-and-downloading) is required for the above experiments.
 
 ## Citation
 ```
