@@ -1,4 +1,4 @@
-# Towards RAW Object Detection in Diverse Conditions
+# [CVPR 2025 Highlight] Towards RAW Object Detection in Diverse Conditions
 
 [Paper link](https://arxiv.org/abs/2411.15678)
 
